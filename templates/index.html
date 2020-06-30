@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Messages</title>
+{% endblock%}
+
+{% block body %}
+<h1>All Messages</h1>
+<select id = "myList">
+    <option value = "1">All</option>
+    <option value = "2">two</option>
+    <option value = "3">three</option>
+    <option value = "4">four</option>
+</select>
+<form action="/" method="POST">
+    <input type="text" placeholder="Message">
+    <input type="text" placeholder="Message-Board">
+    <input type="submit" value="Send">
+</form>
+{% endblock%}
