@@ -29,14 +29,36 @@
     {% for message in messages %}
     {% if message.board == filter or filter == 'All' %}
     <tr>
+        {% if id == message.id %}
+        <td>
+            <form action="/" method="PUT" name="update_form">
+                <input type="text" value="{{ message.message }}" name="message">
+            </form>
+        </td>
+        {% else %}
         <td>{{ message.message }}</td>
+        {% endif %}
+        {% if id == message.id %}
+        <td>
+            <form action="/" method="PUT" name="update_form">
+                <input type="text" value="{{ message.board }}" name="board">
+            </form>
+        </td>
+        {% else %}
         <td>{{ message.board }}</td>
+        {% endif %}
         <td>{{ message.date_created.date() }}</td>
         <td>{{ message.date_created.time().strftime('%H:%M') }}</td>
         <td>
-            <a href="">Update</a>
+            {% if id == message.id %}
+            <form action="/" method="PUT" name="update_form">
+                <input type="submit" value="Update">
+            </form>
+            {% else %}
+            <a href="/message/update/{{message.id}}">Update</a>
             <br>
             <a href="/message/delete/{{message.id}}">Delete</a>
+            {% endif %}
         </td>
     </tr>
     {% endif %}
