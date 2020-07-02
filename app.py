@@ -22,8 +22,9 @@ def get_boards(messages):
     return boards
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST', 'PUT'])
 def index():
+    print(request.method)
     messages = Message.query.order_by(Message.date_created).all()
     boards = get_boards(messages)
     filter = request.args.get('filter')
@@ -68,7 +69,7 @@ def delete(id):
     except:
         return render_template('error.html', error="Something went wrong, we were unable to delete your message", status=500)
 
-@app.route('/message/update/<int:id>')
+@app.route('/update/<int:id>')
 def update(id):
     messages = Message.query.order_by(Message.date_created).all()
     boards = get_boards(messages)
@@ -76,6 +77,24 @@ def update(id):
     return render_template('index.html', messages=messages, boards=boards, filter='All', id=id)
     # return render_template('index.html', messages=messages, boards=boards)#, filter=filter)
     # return render_template('error.html', error="Something went wrong, we were unable to update your message", status=500)
+
+@app.route('/message/update/<int:id>', methods=['POST'])
+def update_message(id):
+    # return 'PUT'
+
+    message = Message.query.get_or_404(id)
+    message_text = request.form['message']
+    board = request.form['board']
+
+    try:
+        message.message = message_text
+        message.board = board # FIXME: check on the board and message
+        # db.session.delete(message)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return render_template('error.html', error="Something went wrong, we were unable to update your message", status=500)
+
 
 
 if __name__ == "__main__":

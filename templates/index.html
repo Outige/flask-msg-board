@@ -31,18 +31,17 @@
     <tr>
         {% if id == message.id %}
         <td>
-            <form action="/" method="PUT" name="update_form">
-                <input type="text" value="{{ message.message }}" name="message">
-            </form>
+            <input type="text" value="{{ message.message }}" name="message" form="update_form">
         </td>
         {% else %}
         <td>{{ message.message }}</td>
         {% endif %}
         {% if id == message.id %}
         <td>
-            <form action="/" method="PUT" name="update_form">
+            <!-- <form action="/message/update/{{message.id}}" method="POST" name="update_form">
                 <input type="text" value="{{ message.board }}" name="board">
-            </form>
+            </form> -->
+            <input type="text" value="{{ message.board }}" name="board" form="update_form">
         </td>
         {% else %}
         <td>{{ message.board }}</td>
@@ -51,11 +50,11 @@
         <td>{{ message.date_created.time().strftime('%H:%M') }}</td>
         <td>
             {% if id == message.id %}
-            <form action="/" method="PUT" name="update_form">
+            <form action="/message/update/{{message.id}}" method="POST" id="update_form">
                 <input type="submit" value="Update">
             </form>
             {% else %}
-            <a href="/message/update/{{message.id}}">Update</a>
+            <a href="/update/{{message.id}}">Update</a>
             <br>
             <a href="/message/delete/{{message.id}}">Delete</a>
             {% endif %}
