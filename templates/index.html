@@ -6,15 +6,46 @@
 
 {% block body %}
 <h1>All Messages</h1>
-<select id = "myList">
-    <option value = "1">All</option>
-    <option value = "2">two</option>
-    <option value = "3">three</option>
-    <option value = "4">four</option>
-</select>
+<form action="/" method="GET">
+    <select name = "filter" id="filter">
+        <option value="{{ filter }}">{{ filter }}</option>
+        {% if filter != 'All' %}
+        <option value="All">All</option>
+        {% endif %}
+        {% for board in boards %}
+        <option value='{{ board }}'>{{ board }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Filter">
+</form>
+
+<table>
+    <th>Message</th>
+    <th>Board</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Options</th>
+
+    {% for message in messages %}
+    {% if message.board == filter or filter == 'All' %}
+    <tr>
+        <td>{{ message.message }}</td>
+        <td>{{ message.board }}</td>
+        <td>{{ message.date_created.date() }}</td>
+        <td>{{ message.date_created.time().strftime('%H:%M') }}</td>
+        <td>
+            <a href="">Update</a>
+            <br>
+            <a href="/message/delete/{{message.id}}">Delete</a>
+        </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
 <form action="/" method="POST">
-    <input type="text" placeholder="Message">
-    <input type="text" placeholder="Message-Board">
+    <input type="text" placeholder="Message" name="message" id="message">
+    <input type="text" placeholder="Message-Board" name="board" value="{{ filter }}">
     <input type="submit" value="Send">
 </form>
 {% endblock%}
