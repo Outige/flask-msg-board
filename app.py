@@ -95,5 +95,5 @@ def update_message(id):
     except:
         return render_template('error.html', error="Something went wrong, we were unable to update your message", status=500)
 
-
-
+if __name__ == "__main__":
+    app.run(debug=True)
