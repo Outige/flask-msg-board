@@ -97,5 +97,3 @@ def update_message(id):
 
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
