@@ -55,7 +55,5 @@ $ heroku logs --app=message-board-flask --tail
 
 ## `Todo`
 
-* Favicon
-* Better CSS
 * update/delete better re-routing
 * User functions
