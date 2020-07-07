@@ -3,7 +3,7 @@
 ## `About`
 
 This is a message board application that allows a user to send messages to various message boards. As well as update and delete messages made.  
-<a href="https://tieg-app2.herokuapp.com/">Click here to see the deployed app</a>
+<a href="https://tieg-app2.herokuapp.com/" target="_blank">Click here to see the deployed app</a>
 
 ---
 
@@ -16,6 +16,7 @@ This is a message board application that allows a user to send messages to vario
 * css
 * bootstrap
 * deploying website
+* heroku
 * wsgi production server
 * virtualenv
 * CRUD
@@ -24,7 +25,9 @@ This is a message board application that allows a user to send messages to vario
 
 ## `Inspiration`
 
-* <a href="https://www.youtube.com/watch?v=Z1RJmh_OqeA&t=1221s">Learn Flask for Python - Full Tutorial</a>
+* <a href="https://www.youtube.com/watch?v=Z1RJmh_OqeA&t=1221s" target="_blank">Learn Flask for Python - Full Tutorial</a>
+* <a href="https://www.youtube.com/watch?v=YnrEGDdJfSk" target="_blank">Bootstrap tutorial 9 - Tables
+</a>
 
 ---
 
