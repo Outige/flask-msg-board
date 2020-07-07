@@ -1,35 +1,30 @@
-body, html {
+hr {
+    margin-top: 0;
+}
+
+.table {
     margin: 0;
-    font-family: sans-serif;
 }
 
-.content {
-    margin: 0 auto;
-    width: 400px;
+.message {
+    max-width: 150px;
 }
 
-table, td, th {
-    border: 1px solid #aaa;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
-    height: 30px;
-}
-
-td {
+#f2 {
     text-align: center;
-    padding: 5px;
+    padding-bottom: 20px;
 }
 
-.form {
-    margin-top: 20px;
+#f2 .message {
+    /* color: forestgreen; */
+    padding: 10px;
 }
 
-#content {
-    width: 70%;
+#f2 .board {
+    /* color: forestgreen; */
+    padding: 10px;
+}
+#f2 .send {
+    /* color: forestgreen; */
+    padding: 11px 30px;
 }

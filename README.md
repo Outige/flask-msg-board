@@ -3,7 +3,7 @@
 ## `About`
 
 This is a message board application that allows a user to send messages to various message boards. As well as update and delete messages made.  
-<a href="https://tieg-app2.herokuapp.com/" target="_blank">Click here to see the deployed app</a>
+<a href="https://tieg-app0.herokuapp.com/" target="_blank">Click here to see the deployed app</a>
 
 ---
 

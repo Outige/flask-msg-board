@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Messages</title>
+<title>{{ filter }} - Messages</title>
 {% endblock%}
 
 {% block body %}
-<h1>All Messages</h1>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <a href=" {{ url_for('index') }}" class="navbar-brand">Flask Message Board</a>
+            <ul class="nav navbar-nav">
+                <!-- <li class="navbar-brand">
+                    item would go here
+                </li> -->
+            </ul>
+    </div>
+
+</nav>
+
 <form action="/" method="GET">
-    <select name = "filter" id="filter">
+    <select name = "filter" id="filter" class="btn btn-secondary">
         <option value="{{ filter }}">{{ filter }}</option>
         {% if filter != 'All' %}
         <option value="All">All</option>
@@ -16,57 +28,73 @@
         <option value='{{ board }}'>{{ board }}</option>
         {% endfor %}
     </select>
-    <input type="submit" value="Filter">
+    <input type="submit" value="Filter" class="btn btn-secondary">
 </form>
 
-<table>
-    <th>Message</th>
-    <th>Board</th>
-    <th>Date</th>
-    <th>Time</th>
-    <th>Options</th>
+<table class="table table-striped table-condensed">
+    <tr>
+        <th class="bg-primary">Message</th>
+        <th class="bg-primary">Board</th>
+        <th class="bg-primary">Date</th>
+        <th class="bg-primary">Time</th>
+        <th class="bg-primary">Options</th>
+    </tr>
 
     {% for message in messages %}
     {% if message.board == filter or filter == 'All' %}
     <tr>
+        
         {% if id == message.id %}
-        <td>
+        <td class="bg-info message">
             <input type="text" value="{{ message.message }}" name="message" form="update_form">
         </td>
         {% else %}
-        <td>{{ message.message }}</td>
+        <td class="message">{{ message.message }}</td>
         {% endif %}
+
         {% if id == message.id %}
-        <td>
-            <!-- <form action="/message/update/{{message.id}}" method="POST" name="update_form">
-                <input type="text" value="{{ message.board }}" name="board">
-            </form> -->
+        <td class="bg-info">
             <input type="text" value="{{ message.board }}" name="board" form="update_form">
         </td>
         {% else %}
         <td>{{ message.board }}</td>
         {% endif %}
+
+        {% if id == message.id %}
+        <td class="bg-info">{{ message.date_created.date() }}</td>
+        {% else %}
         <td>{{ message.date_created.date() }}</td>
+        {% endif %}
+
+        {% if id == message.id %}
+        <td class="bg-info">{{ message.date_created.time().strftime('%H:%M') }}</td>
+        {% else %}
         <td>{{ message.date_created.time().strftime('%H:%M') }}</td>
-        <td>
-            {% if id == message.id %}
+        {% endif %}
+
+        {% if id == message.id %}
+        <td class="bg-info">
             <form action="/message/update/{{message.id}}" method="POST" id="update_form">
                 <input type="submit" value="Update">
             </form>
-            {% else %}
+        </td>
+        {% else %}
+        <td>
             <a href="/update/{{message.id}}">Update</a>
             <br>
             <a href="/message/delete/{{message.id}}">Delete</a>
-            {% endif %}
         </td>
+        {% endif %}
+
     </tr>
     {% endif %}
     {% endfor %}
 </table>
+<hr>
 
-<form action="/" method="POST">
-    <input type="text" placeholder="Message" name="message" id="message">
-    <input type="text" placeholder="Message-Board" name="board" value="{{ filter }}">
-    <input type="submit" value="Send">
+<form action="/" method="POST" id="f2">
+    <input type="text" placeholder="Message" name="message" id="message" class="bg-secondary message">
+    <input type="text" placeholder="Message-Board" name="board" value="{{ filter }}" class="bg-secondary board text-info">
+    <input type="submit" value="Send" class="btn btn-primary send">
 </form>
 {% endblock%}
