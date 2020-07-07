@@ -55,5 +55,4 @@ $ heroku logs --app=message-board-flask --tail
 
 ## `Todo`
 
-* update/delete better re-routing
 * User functions

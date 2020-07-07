@@ -74,15 +74,15 @@
 
         {% if id == message.id %}
         <td class="bg-info">
-            <form action="/message/update/{{message.id}}" method="POST" id="update_form">
+            <form action="/message/update/{{message.id}}/filter/{{ filter }}" method="POST" id="update_form">
                 <input type="submit" value="Update">
             </form>
         </td>
         {% else %}
         <td>
-            <a href="/update/{{message.id}}">Update</a>
+            <a href="/update/{{message.id}}/filter/{{ filter }}">Update</a>
             <br>
-            <a href="/message/delete/{{message.id}}">Delete</a>
+            <a href="/message/delete/{{message.id}}/filter/{{ filter }}">Delete</a>
         </td>
         {% endif %}
 

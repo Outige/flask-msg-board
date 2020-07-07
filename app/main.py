@@ -58,28 +58,31 @@ def index():
         return render_template('error.html', error="Something went wrong", status=500)
 
 
-@app.route('/message/delete/<int:id>')
-def delete(id):
+@app.route('/message/delete/<int:id>/filter/<string:filter>')
+def delete(id, filter):
     message = Message.query.get_or_404(id)
 
     try:
         db.session.delete(message)
         db.session.commit()
-        return redirect('/')
+        
+        messages = Message.query.order_by(Message.date_created).all()
+        boards = get_boards(messages)
+        return render_template('index.html', messages=messages, boards=boards, filter=filter)
     except:
         return render_template('error.html', error="Something went wrong, we were unable to delete your message", status=500)
 
-@app.route('/update/<int:id>')
-def update(id):
+@app.route('/update/<int:id>/filter/<string:filter>')
+def update(id, filter):
     messages = Message.query.order_by(Message.date_created).all()
     boards = get_boards(messages)
     # FIXME: would like to pass the filter somehow, probably in URL from the get
-    return render_template('index.html', messages=messages, boards=boards, filter='All', id=id)
+    return render_template('index.html', messages=messages, boards=boards, filter=filter, id=id)
     # return render_template('index.html', messages=messages, boards=boards)#, filter=filter)
     # return render_template('error.html', error="Something went wrong, we were unable to update your message", status=500)
 
-@app.route('/message/update/<int:id>', methods=['POST'])
-def update_message(id):
+@app.route('/message/update/<int:id>/filter/<string:filter>', methods=['POST'])
+def update_message(id, filter):
     # return 'PUT'
 
     message = Message.query.get_or_404(id)
@@ -89,9 +92,11 @@ def update_message(id):
     try:
         message.message = message_text
         message.board = board # FIXME: check on the board and message
-        # db.session.delete(message)
         db.session.commit()
-        return redirect('/')
+
+        messages = Message.query.order_by(Message.date_created).all()
+        boards = get_boards(messages)
+        return render_template('index.html', messages=messages, boards=boards, filter=filter)
     except:
         return render_template('error.html', error="Something went wrong, we were unable to update your message", status=500)
 
