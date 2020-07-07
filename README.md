@@ -2,7 +2,8 @@
 
 ## `About`
 
-This is a message board application that allows a user to send messages to various message boards. As well as update and delete messages made.
+This is a message board application that allows a user to send messages to various message boards. As well as update and delete messages made.  
+<a href="https://tieg-app2.herokuapp.com/">Click here to see the deployed app</a>
 
 ---
 
@@ -46,3 +47,12 @@ $ git push heroku master
 
 ### Error checking:
 $ heroku logs --app=message-board-flask --tail
+
+---
+
+## `Todo`
+
+* Favicon
+* Better CSS
+* update/delete better re-routing
+* User functions
