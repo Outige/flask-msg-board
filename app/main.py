@@ -40,7 +40,9 @@ def index():
         if message == '':
             return render_template('error.html', error="Message body can't be empty", status=400)
         if board == '':
-            board = 'DEFAULT'
+            return render_template('error.html', error="Message board can't be empty", status=400)
+        if board == 'All':
+            return render_template('error.html', error="'All' is a reserved message board", status=400)
         new_message = Message(message=message, board=board)
         
         try:
@@ -88,6 +90,12 @@ def update_message(id, filter):
     message = Message.query.get_or_404(id)
     message_text = request.form['message']
     board = request.form['board']
+    if message_text == '':
+        return render_template('error.html', error="Message body can't be empty", status=400)
+    if board == '':
+        return render_template('error.html', error="Message board can't be empty", status=400)
+    if board == 'All':
+        return render_template('error.html', error="'All' is a reserved message board", status=400)
 
     try:
         message.message = message_text

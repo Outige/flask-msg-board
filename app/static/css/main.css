@@ -28,3 +28,25 @@ hr {
     /* color: forestgreen; */
     padding: 11px 30px;
 }
+
+.error_body {
+    text-align: center;
+    /* margin: auto auto; */
+}
+
+.error_body h1 {
+    padding-top: 200px;
+    font-size: 150px;
+}
+
+.error_body p {
+    font-size: 20px;
+}
+
+.error_body input {
+    font-size: 20px;
+}
+
+table {
+    font-size: 120%;
+}
